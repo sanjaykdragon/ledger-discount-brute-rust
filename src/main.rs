@@ -26,14 +26,12 @@ fn check_discount_validity(code: &String) {
         })
     );
 
-    let response_result_json = resp.into_json();
-    if let Ok(response_json) = response_result_json {
+    if let Ok(response_json) = resp.into_json() {
         if let Some(response_code) = response_json.get("code") {
             if response_code == "generic_error" {
                 return; //not a valid code, because it contains a key for "code", which has the value generic_error
             }
         }
-    
         let discount_amount = &response_json["items"][0]["discounts"][0]["label"];
         println!("code: {} discount amt: {}", code, discount_amount)
     }
