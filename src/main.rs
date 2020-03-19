@@ -7,7 +7,7 @@ fn main() {
     let file = File::open(words_file).unwrap();
     let reader = BufReader::new(file);
     let words: Vec<String> = reader.lines().map(|x| x.unwrap()).collect();
-    let _t: Vec<()> = words.par_iter().map(|i| check_discount_validity(i)).collect();
+    let _: Vec<_> = words.par_iter().map(|i| check_discount_validity(i)).collect();
 }
 
 fn check_discount_validity(code: &String) {
